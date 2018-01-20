@@ -8,7 +8,7 @@
 
     <!-- Links -->
     <string name="site" translatable="false">http://www.s2cristao.com.br/</string>
-    <string name="sign_out" translatable="false">https://www.youtube.com/watch?v=Dmy6qC8CDSo</string>
+    <string name="sign_out" translatable="false">Test</string>
 
     <!-- Intent Button Share -->
     <string name="share_subject">Look this amazing app!</string>
