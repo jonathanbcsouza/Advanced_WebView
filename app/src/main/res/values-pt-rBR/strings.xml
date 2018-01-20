@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="share_subject">Olhe esse incrível aplicativo!</string>
+    <string name="share_message">Feito para religiosos!</string>
+    <string name="share_header_when_clicked">Escolha onde quer compartilhar:</string>
+    <string name="share">Compartilhe</string>
+    <string name="about">Sobre Nós</string>
+    <string name="xml_about_title">Primeira rede social focado no cristianismo</string>
+    <string name="xml_about_description">Nós arceditamos que podemos ajudar a nos conectar e compartilhar o cristianismo para mundo.</string>
+    <string name="home">Início</string>
+</resources>

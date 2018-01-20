@@ -1,0 +1,75 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="horizontal"
+    tools:context="com.example.jonat.s2cristao.AboutUsActivity">
+
+    <LinearLayout
+        android:id="@+id/navigationBarLibrary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/paymentXmlFromPayPalXml"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5" />
+
+        <TextView
+            android:id="@+id/xml_about_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/xml_about_title"
+            android:textAlignment="center"
+            android:textColor="@color/textAboutScreen"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/xml_about_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:gravity="center_vertical"
+            android:text="@string/xml_about_description"
+            android:textAlignment="center"
+            android:textColor="@color/textAboutScreen"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_about_home_screen"
+                style="@style/ButtonsFooter"
+                android:actionProviderClass="android.widget.ShareActionProvider"
+                android:showAsAction="ifRoom"
+                android:text="@string/home"
+                android:textColor="@color/colorHeart" />
+
+            <Button
+                android:id="@+id/btn_about_share_app"
+                style="@style/ButtonsFooter"
+                android:actionProviderClass="android.widget.ShareActionProvider"
+                android:showAsAction="ifRoom"
+                android:text="@string/share"
+                android:textColor="@color/colorHeart" />
+
+            <Button
+                android:id="@+id/btn_about"
+                style="@style/ButtonsFooter"
+                android:actionProviderClass="android.widget.ShareActionProvider"
+                android:showAsAction="ifRoom"
+                android:text="@string/about"
+                android:textColor="@color/colorHeart" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

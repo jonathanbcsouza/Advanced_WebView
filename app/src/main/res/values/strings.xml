@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name" translatable="false">S2-CRISTAO</string>
+
+    <!-- MainActivity -->
+    <string name="home">Home</string>
+    <string name="share">Share</string>
+    <string name="about">About Us</string>
+
+    <!-- Links -->
+    <string name="site" translatable="false">http://www.s2cristao.com.br/</string>
+    <string name="sign_out" translatable="false">https://www.youtube.com/watch?v=Dmy6qC8CDSo</string>
+
+    <!-- Intent Button Share -->
+    <string name="share_subject">Look this amazing app!</string>
+    <string name="share_message">Made for religions!</string>
+    <string name="share_header_when_clicked">Choose where want to share:</string>
+
+    <!-- About Activity -->
+    <string name="xml_about_title">We are the first social network focused on christianity</string>
+    <string name="xml_about_description">We believe that we can connect help and sharing the christianity around the worlds</string>
+</resources>
