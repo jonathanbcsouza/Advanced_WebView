@@ -28,15 +28,13 @@
                 style="@style/ButtonsFooter"
                 android:actionProviderClass="android.widget.ShareActionProvider"
                 android:showAsAction="ifRoom"
-                android:text="@string/share"
-                android:textColor="@color/colorHeart" />
+                android:text="@string/share" />
 
             <Button
                 android:id="@+id/btn_home_sign_out"
                 style="@style/ButtonsFooter"
                 android:showAsAction="ifRoom"
-                android:text="@string/about"
-                android:textColor="@color/colorHeart" />
+                android:text="@string/about" />
 
         </LinearLayout>
 

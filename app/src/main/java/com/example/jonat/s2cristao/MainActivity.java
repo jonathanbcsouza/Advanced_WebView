@@ -1,6 +1,11 @@
 package com.example.jonat.s2cristao;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +13,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Check Internet
+        if(!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
+        else {
+            Toast.makeText(MainActivity.this, R.string.toast_welcome, Toast.LENGTH_LONG).show();
+            setContentView(R.layout.activity_main);
+        }
+
+        //Inflate Web view
         WebView myWebView = (WebView) findViewById(R.id.web_view);
         myWebView.setWebViewClient(new WebViewClient());
 
@@ -42,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 // Add data to the intent, the receiving app will decide
                 // what to do with it.
                 share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
-                share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message) + getString(R.string.site));
+                share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message)
+                        + "\n" + getString(R.string.subscribe_now) + "\n" + getString(R.string.site));
+
 
                 startActivity(Intent.createChooser(share, getString(R.string.share_header_when_clicked)));
             }
@@ -56,6 +72,41 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(myIntent);
 
             }
+
         });
+
+    }
+
+    public boolean isConnected(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
+        else return false;
+        } else
+        return false;
+    }
+
+    public AlertDialog.Builder buildDialog(Context c) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        builder.setTitle(R.string.alert_title_no_Internet);
+        builder.setMessage(R.string.alert_description_no_internet);
+
+        builder.setPositiveButton(R.string.alert_user_answer, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                finish();
+            }
+        });
+
+        return builder;
     }
 }

@@ -50,24 +50,21 @@
                 style="@style/ButtonsFooter"
                 android:actionProviderClass="android.widget.ShareActionProvider"
                 android:showAsAction="ifRoom"
-                android:text="@string/home"
-                android:textColor="@color/colorHeart" />
+                android:text="@string/home" />
 
             <Button
                 android:id="@+id/btn_about_share_app"
                 style="@style/ButtonsFooter"
                 android:actionProviderClass="android.widget.ShareActionProvider"
                 android:showAsAction="ifRoom"
-                android:text="@string/share"
-                android:textColor="@color/colorHeart" />
+                android:text="@string/share" />
 
             <Button
                 android:id="@+id/btn_about"
                 style="@style/ButtonsFooter"
                 android:actionProviderClass="android.widget.ShareActionProvider"
                 android:showAsAction="ifRoom"
-                android:text="@string/about"
-                android:textColor="@color/colorHeart" />
+                android:text="@string/about" />
 
         </LinearLayout>
 

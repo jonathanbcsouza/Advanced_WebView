@@ -40,7 +40,8 @@ public class AboutUsActivity extends AppCompatActivity {
                 // Add data to the intent, the receiving app will decide
                 // what to do with it.
                 share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
-                share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message) + getString(R.string.site));
+                share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message)
+                        + "\n" + getString(R.string.subscribe_now) + "\n" + getString(R.string.site));
 
                 startActivity(Intent.createChooser(share, getString(R.string.share_header_when_clicked)));
             }

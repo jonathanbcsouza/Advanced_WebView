@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorHeart">#fc0e0e</color>
+    <color name="colorDarkHeart">#951812</color>
+    <color name="textButtons">#FFFFFF</color>
     <color name="textAboutScreen">#FFFFFF</color>
-
 
 </resources>

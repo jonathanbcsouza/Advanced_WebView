@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="share_subject">Olhe esse incrível aplicativo!</string>
-    <string name="share_message">Feito para religiosos!</string>
+    <string name="share_message">S2 Cristão é a primeira rede social onde você pode buscar amigos da sua religião, conversar e fazer novas amizades.</string>
+    <string name="subscribe_now">Se inscreva agora!</string>
+
     <string name="share_header_when_clicked">Escolha onde quer compartilhar:</string>
     <string name="share">Compartilhe</string>
     <string name="about">Sobre Nós</string>
     <string name="xml_about_title">Primeira rede social focado no cristianismo</string>
-    <string name="xml_about_description">Nós arceditamos que podemos ajudar a nos conectar e compartilhar o cristianismo para mundo.</string>
-    <string name="home">Início</string>
+    <string name="xml_about_description">Nós acreditamos que podemos nos conectar e compartilhar o cristianismo para mundo.</string>
+    <string name="home">Voltar</string>
+
+    <!--Alert Dialogue -->
+    <string name="alert_title_no_Internet">Dispositivo sem conexão</string>
+    <string name="alert_description_no_internet">Você precisará ter acesso a internet para acessar. Pressione Ok para sair e verifique sua conexão.</string>
+
 </resources>
