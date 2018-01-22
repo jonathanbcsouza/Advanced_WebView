@@ -13,7 +13,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Check Internet
-        if(!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
+        if (!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
+
         else {
-            Toast.makeText(MainActivity.this, R.string.toast_welcome, Toast.LENGTH_LONG).show();
-            setContentView(R.layout.activity_main);
         }
+
 
         //Inflate Web view
         WebView myWebView = (WebView) findViewById(R.id.web_view);
@@ -77,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -86,10 +86,11 @@ public class MainActivity extends AppCompatActivity {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
-        else return false;
+            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
+                return true;
+            else return false;
         } else
-        return false;
+            return false;
     }
 
     public AlertDialog.Builder buildDialog(Context c) {

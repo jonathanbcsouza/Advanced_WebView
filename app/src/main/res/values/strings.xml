@@ -7,8 +7,8 @@
     <string name="about">About Us</string>
 
     <!-- Links -->
-    <string name="site" translatable="false">http://bit.ly/coracaocristao</string>
-    <string name="sign_out" translatable="false">Test</string>
+    <string name="site" translatable="false">http://bit.ly/coracao_cristao</string>
+    <string name="site_share" translatable="false">https://play.google.com/store/apps/details?id=com.tour.guide</string>
 
     <!-- Intent Button Share -->
     <string name="share_subject">Look this amazing app!</string>
