@@ -1,61 +1,34 @@
 package com.example.jonat.s2cristao;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import im.delight.android.webview.AdvancedWebView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity implements AdvancedWebView.Listener {
+
+    private AdvancedWebView mWebView;
 
     Button btnShare;
     Button btnAbout;
 
     private ValueCallback<Uri> mUploadMessage;
-    private final static int FILECHOOSER_RESULTCODE = 1;
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent intent) {
-        if (requestCode == FILECHOOSER_RESULTCODE) {
-            if (null == mUploadMessage)
-                return;
-            Uri result = intent == null || resultCode != RESULT_OK ? null
-                    : intent.getData();
-            mUploadMessage.onReceiveValue(result);
-            mUploadMessage = null;
-
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +41,14 @@ public class MainActivity extends AppCompatActivity {
         else {
         }
 
-
         //Inflate Web view
-        WebView myWebView = (WebView) findViewById(R.id.web_view);
-        myWebView.setWebViewClient(new WebViewClient());
-        myWebView.loadUrl(getString(R.string.site));
+        mWebView = (AdvancedWebView) findViewById(R.id.web_view);
+        mWebView.setListener(this, this);
+        mWebView.loadUrl(getString(R.string.site));
+        mWebView.setGeolocationEnabled(true);
 
         // Enable JavaScript
-        WebSettings webSettings = myWebView.getSettings();
+        WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
 
@@ -113,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -148,4 +120,75 @@ public class MainActivity extends AppCompatActivity {
         return builder;
     }
 
+    //Library to Advanced WebView
+    @SuppressLint("NewApi")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mWebView.onResume();
+        // ...
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    protected void onPause() {
+        mWebView.onPause();
+        // ...
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mWebView.onDestroy();
+        // ...
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        mWebView.onActivityResult(requestCode, resultCode, intent);
+        // ...
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!mWebView.onBackPressed()) {
+            return;
+        }
+        // ...
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onPageStarted(String url, Bitmap favicon) {
+        mWebView.setVisibility(View.INVISIBLE);
+
+    }
+
+    @Override
+    public void onPageFinished(String url) {
+        mWebView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onPageError(int errorCode, String description, String failingUrl) {
+        Toast.makeText(MainActivity.this, "onPageError(errorCode = " + errorCode + ",  description = " + description + ",  failingUrl = " + failingUrl + ")", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
+
+    }
+
+    @Override
+    public void onExternalPageRequest(String url) {
+
+    }
 }
+
+
+
+
+
