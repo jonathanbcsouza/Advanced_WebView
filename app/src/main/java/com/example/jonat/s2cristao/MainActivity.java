@@ -1,24 +1,61 @@
 package com.example.jonat.s2cristao;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnShare;
     Button btnAbout;
+
+    private ValueCallback<Uri> mUploadMessage;
+    private final static int FILECHOOSER_RESULTCODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent intent) {
+        if (requestCode == FILECHOOSER_RESULTCODE) {
+            if (null == mUploadMessage)
+                return;
+            Uri result = intent == null || resultCode != RESULT_OK ? null
+                    : intent.getData();
+            mUploadMessage.onReceiveValue(result);
+            mUploadMessage = null;
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
         //Inflate Web view
         WebView myWebView = (WebView) findViewById(R.id.web_view);
         myWebView.setWebViewClient(new WebViewClient());
-
         myWebView.loadUrl(getString(R.string.site));
 
         // Enable JavaScript
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+
 
         // Buttons
         btnShare = (Button) findViewById(R.id.btn_share_app);
@@ -56,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 // what to do with it.
                 share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
                 share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message)
-                        + "\n" + getString(R.string.subscribe_now) + "\n" + getString(R.string.site));
+                        + "\n" + getString(R.string.subscribe_now) + "\n" + getString(R.string.site_share));
 
 
                 startActivity(Intent.createChooser(share, getString(R.string.share_header_when_clicked)));
@@ -110,4 +147,5 @@ public class MainActivity extends AppCompatActivity {
 
         return builder;
     }
+
 }
