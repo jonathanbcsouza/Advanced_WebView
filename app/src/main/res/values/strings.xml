@@ -7,7 +7,7 @@
     <string name="about">About Us</string>
 
     <!-- Links -->
-    <string name="site" translatable="false">http://bit.ly/coracao_cristao</string>
+    <string name="site" translatable="false">http://www.s2cristao.com.br</string>
     <string name="site_share" translatable="false">http://bit.ly/google-play-s2-cristao</string>
 
     <!-- Intent Button Share -->
@@ -28,4 +28,7 @@
     <string name="alert_description_no_internet">You need to have Mobile Data or wifi to access this. Press ok to Exit and check your connection.</string>
     <string name="alert_user_answer" translatable="false">Ok</string>
 
+    <!-- Menu list -->
+    <string name="sign_out">Sign Out</string>
+    <string name="rate_us">Rate us</string>
 </resources>

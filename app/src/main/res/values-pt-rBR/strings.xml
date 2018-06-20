@@ -16,4 +16,7 @@
     <string name="alert_description_no_internet">Você precisará ter acesso a internet para acessar. Pressione Ok para sair e verifique sua conexão.</string>
     <string name="toast_welcome">Bem Vindo!</string>
 
+    <!-- Menu list -->
+    <string name="sign_out">Log out</string>
+    <string name="rate_us">Avalie-nos</string>
 </resources>

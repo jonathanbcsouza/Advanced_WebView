@@ -1,7 +1,6 @@
 package com.example.jonat.s2cristao;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,29 +10,29 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
-import android.widget.Button;
 import android.widget.Toast;
 
 import im.delight.android.webview.AdvancedWebView;
 
 
-public class MainActivity extends Activity implements AdvancedWebView.Listener {
+public class MainActivity extends AppCompatActivity implements AdvancedWebView.Listener {
 
     private AdvancedWebView mWebView;
-
-    Button btnShare;
-    Button btnAbout;
-
-    private ValueCallback<Uri> mUploadMessage;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         //Check Internet
         if (!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
@@ -50,39 +49,6 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
         // Enable JavaScript
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
-
-        // Buttons
-        btnShare = (Button) findViewById(R.id.btn_share_app);
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent share = new Intent(android.content.Intent.ACTION_SEND);
-                share.setType("text/plain");
-                share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-
-                // Add data to the intent, the receiving app will decide
-                // what to do with it.
-                share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
-                share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message)
-                        + "\n" + getString(R.string.subscribe_now) + "\n" + getString(R.string.site_share));
-
-
-                startActivity(Intent.createChooser(share, getString(R.string.share_header_when_clicked)));
-            }
-        });
-
-        btnAbout = (Button) findViewById(R.id.btn_home_sign_out);
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this, AboutUsActivity.class);
-                MainActivity.this.startActivity(myIntent);
-
-            }
-
-        });
 
     }
 
@@ -186,9 +152,48 @@ public class MainActivity extends Activity implements AdvancedWebView.Listener {
     public void onExternalPageRequest(String url) {
 
     }
+
+    // Inflate the menu items for use in the action bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                return true;
+
+            case R.id.action_share:
+
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+                // Add data to the intent, the receiving app will decide
+                // what to do with it.
+                share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
+                share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message)
+                        + "\n" + getString(R.string.subscribe_now)
+                        + "\n" + getString(R.string.site_share));
+
+                startActivity(Intent.createChooser(share, getString(R.string.share_header_when_clicked)));
+                return true;
+
+            case R.id.rate_us:
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
+                startActivity(browserIntent);
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 }
-
-
-
-
-

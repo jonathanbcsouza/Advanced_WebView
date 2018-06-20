@@ -1,0 +1,17 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_search"
+        android:icon="@mipmap/ic_heart"
+        android:title="Action Bar"
+        app:showAsAction="ifRoom" />
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_share"
+        android:title="@string/share"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/rate_us"
+        android:title="@string/rate_us"
+        app:showAsAction="never" />
+
+</menu>

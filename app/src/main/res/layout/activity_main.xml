@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     tools:context="com.example.jonat.s2cristao.MainActivity">
 
@@ -11,32 +12,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
         <im.delight.android.webview.AdvancedWebView
             android:id="@+id/web_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_share_app"
-                style="@style/ButtonsFooter"
-                android:actionProviderClass="android.widget.ShareActionProvider"
-                android:showAsAction="ifRoom"
-                android:text="@string/share" />
-
-            <Button
-                android:id="@+id/btn_home_sign_out"
-                style="@style/ButtonsFooter"
-                android:showAsAction="ifRoom"
-                android:text="@string/about" />
-
-        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
