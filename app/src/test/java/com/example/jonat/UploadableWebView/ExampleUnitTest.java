@@ -1,4 +1,4 @@
-package com.example.jonat.s2cristao;
+package com.example.jonat.UploadableWebView;
 
 import org.junit.Test;
 

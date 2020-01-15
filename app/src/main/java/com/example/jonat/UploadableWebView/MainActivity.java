@@ -1,4 +1,4 @@
-package com.example.jonat.s2cristao;
+package com.example.jonat.UploadableWebView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
 
     }
 
-    // Inflate the menu items for use in the action bar
+    // Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -172,20 +172,12 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
                 share.setType("text/plain");
                 share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 
-                // Add data to the intent, the receiving app will decide
-                // what to do with it.
                 share.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
                 share.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_message)
                         + "\n" + getString(R.string.subscribe_now)
                         + "\n" + getString(R.string.site_share));
 
                 startActivity(Intent.createChooser(share, getString(R.string.share_header_when_clicked)));
-                return true;
-
-            case R.id.rate_us:
-
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
-                startActivity(browserIntent);
                 return true;
 
             default:
