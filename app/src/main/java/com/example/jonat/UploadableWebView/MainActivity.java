@@ -31,16 +31,13 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         if (!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
 
-        else {
-        }
-
         //Inflate Web view
-        mWebView = (AdvancedWebView) findViewById(R.id.web_view);
+        mWebView = findViewById(R.id.web_view);
         mWebView.setListener(this, this);
         mWebView.loadUrl(getString(R.string.site));
         mWebView.setGeolocationEnabled(true);
@@ -54,15 +51,13 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
     public boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
 
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if ((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting()))
-                return true;
-            else return false;
+            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
         } else
             return false;
     }

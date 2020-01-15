@@ -5,7 +5,7 @@
     <string name="share">Share</string>
 
     <!-- Links -->
-    <string name="site" translatable="false">https://google.com</string>
+    <string name="site" translatable="false">https://jonathanbcsouza.github.io/Advanced_WebView/</string>
     <string name="site_share" translatable="false">https://github.com/jonathanbcsouza/Advanced_WebView</string>
 
     <!-- Intent Button Share -->
