@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        //Check Internet
         if (!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
 
         else {
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
         mWebView.loadUrl(getString(R.string.site));
         mWebView.setGeolocationEnabled(true);
 
-        // Enable JavaScript
+        // Enabling JavaScript
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
